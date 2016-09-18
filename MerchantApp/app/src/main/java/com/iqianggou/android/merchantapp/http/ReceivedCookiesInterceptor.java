@@ -1,5 +1,9 @@
 package com.iqianggou.android.merchantapp.http;
 
+import android.util.Log;
+
+import com.iqianggou.android.merchantapp.local.PreferenceClient;
+
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.prefs.Preferences;
@@ -20,11 +24,10 @@ public class ReceivedCookiesInterceptor implements Interceptor {
 
             for (String header : originalResponse.headers("Set-Cookie")) {
                 cookies.add(header);
+                Log.v("OkHttp", "received header" + header);
             }
 
-            Preferences.getDefaultPreferences().edit()
-                    .putStringSet(Preferences.PREF_COOKIES, cookies)
-                    .apply();
+            PreferenceClient.setCookies(cookies);
         }
 
         return originalResponse;

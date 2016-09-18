@@ -3,6 +3,7 @@ package com.iqianggou.android.merchantapp;
 import android.app.Application;
 
 import com.bugtags.library.Bugtags;
+import com.facebook.stetho.Stetho;
 
 /**
  * Created by Administrator on 2016/9/17.
@@ -21,5 +22,6 @@ public class MerchantApplication extends Application {
 
         INSTANCE = this;
         Bugtags.start("66efc4c6bfc2ff877d2dcb90f1a2b4ae", this, Bugtags.BTGInvocationEventBubble);
+        Stetho.initializeWithDefaults(this);
     }
 }
