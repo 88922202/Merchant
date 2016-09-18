@@ -6,7 +6,9 @@ import android.view.View;
 import android.widget.Button;
 
 import com.iqianggou.android.merchantapp.R;
-import com.iqianggou.android.merchantapp.http.RetrofitClient;
+import com.iqianggou.android.merchantapp.http.asynchttp.AsyncClient;
+import com.iqianggou.android.merchantapp.http.retrofit.RetrofitClient;
+import com.loopj.android.http.AsyncHttpClient;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RetrofitClient.getInstance().doLogin("zgzd", "150130");
+                AsyncClient.getInstance().doLogin("zgzd", "150130");
             }
         });
 

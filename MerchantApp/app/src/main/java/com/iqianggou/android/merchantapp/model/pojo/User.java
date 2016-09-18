@@ -26,7 +26,7 @@ public class User {
     private int mUserId;
 
     @SerializedName("username")
-    private String mUserName;
+    private String mUsername;
 
     @SerializedName("bind_mobile")
     private String mMobile;
@@ -97,12 +97,12 @@ public class User {
         mUserId = userId;
     }
 
-    public String getUserName() {
-        return mUserName;
+    public String getUsername() {
+        return mUsername;
     }
 
-    public void setUserName(String userName) {
-        mUserName = userName;
+    public void setUsername(String userName) {
+        mUsername = userName;
     }
 
     public String getMobile() {
@@ -170,7 +170,7 @@ public class User {
                 ", mBrandName='" + mBrandName + '\'' +
                 ", mLogo='" + mLogo + '\'' +
                 ", mUserId=" + mUserId +
-                ", mUserName='" + mUserName + '\'' +
+                ", mUsername='" + mUsername + '\'' +
                 ", mMobile='" + mMobile + '\'' +
                 ", mShareCode='" + mShareCode + '\'' +
                 ", mOpenImAccount='" + mOpenImAccount + '\'' +

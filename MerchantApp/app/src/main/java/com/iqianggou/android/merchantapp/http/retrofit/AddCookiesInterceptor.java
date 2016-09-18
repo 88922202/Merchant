@@ -1,4 +1,4 @@
-package com.iqianggou.android.merchantapp.http;
+package com.iqianggou.android.merchantapp.http.retrofit;
 
 import android.util.Log;
 
@@ -23,7 +23,7 @@ public class AddCookiesInterceptor implements Interceptor {
         HashSet<String> preferences = (HashSet) PreferenceClient.getCookies();
         for (String cookie : preferences) {
             builder.addHeader("Cookie", cookie);
-            Log.v("OkHttp", "Adding Header: " + cookie);
+            Log.d("OkHttp", "Adding Header: " + cookie);
         }
 
         return chain.proceed(builder.build());

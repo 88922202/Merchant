@@ -1,4 +1,4 @@
-package com.iqianggou.android.merchantapp.http;
+package com.iqianggou.android.merchantapp.http.retrofit;
 
 import android.util.Log;
 
@@ -24,7 +24,7 @@ public class ReceivedCookiesInterceptor implements Interceptor {
 
             for (String header : originalResponse.headers("Set-Cookie")) {
                 cookies.add(header);
-                Log.v("OkHttp", "received header" + header);
+                Log.d("OkHttp", "received header" + header);
             }
 
             PreferenceClient.setCookies(cookies);

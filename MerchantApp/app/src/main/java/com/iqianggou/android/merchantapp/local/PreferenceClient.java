@@ -15,6 +15,8 @@ import java.util.Set;
 public class PreferenceClient {
 
     private static final String COOKIES = "cookies";
+    private static final String TOKEN = "token";
+    private static final String ZONE_ID = "zone_id";
 
     private static SharedPreferences PREFERENCE = getPreferences();
 
@@ -24,6 +26,22 @@ public class PreferenceClient {
 
     public static void setCookies(Set<String> cookies){
         PREFERENCE.edit().putStringSet(COOKIES, cookies).apply();
+    }
+
+    public static String getToken(){
+        return PREFERENCE.getString(TOKEN, "");
+    }
+
+    public static void setToken(String token){
+        PREFERENCE.edit().putString(TOKEN, token).apply();
+    }
+
+    public static String getZoneId(){
+        return PREFERENCE.getString(ZONE_ID, "");
+    }
+
+    public static void setZoneId(String id){
+        PREFERENCE.edit().putString(ZONE_ID, id).apply();
     }
 
     private static SharedPreferences getPreferences(){

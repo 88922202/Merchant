@@ -1,13 +1,14 @@
-package com.iqianggou.android.merchantapp.http;
+package com.iqianggou.android.merchantapp.http.retrofit;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.iqianggou.android.merchantapp.MerchantApplication;
+import com.iqianggou.android.merchantapp.http.APIBase;
 import com.iqianggou.android.merchantapp.http.api.Login;
+import com.iqianggou.android.merchantapp.local.PreferenceClient;
 import com.iqianggou.android.merchantapp.model.pojo.User;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
-import com.iqianggou.android.merchantapp.utils.PreferenceUtils;
 import com.iqianggou.android.merchantapp.utils.UuidHelper;
 
 import java.io.IOException;
@@ -27,9 +28,6 @@ import rx.schedulers.Schedulers;
  * Created by Administrator on 2016/9/17.
  */
 public class RetrofitClient {
-
-    private static final String TOKEN_TAG = "token";
-    private static final String ZONE_ID = "zoneid";
 
     private static RetrofitClient INSTANCE;
     private Retrofit mRetrofit;
@@ -85,8 +83,8 @@ public class RetrofitClient {
                                 .addHeader("version", PhoneUtils.getVersionName(MerchantApplication.getInstance()))
                                 .addHeader("platform", "2")
                                 .addHeader("Accept", "application/json")
-                                .addHeader("Auth-Token", PreferenceUtils.getPrefString(TOKEN_TAG, ""))
-                                .addHeader("zoneid", PreferenceUtils.getPrefString(ZONE_ID, ""))
+                                .addHeader("Auth-Token", PreferenceClient.getToken())
+                                .addHeader("zoneid", PreferenceClient.getZoneId())
                                 .addHeader("width", String.valueOf(PhoneUtils.getPhoneWidth()))
                                 .addHeader("height", String.valueOf(PhoneUtils.getPhoneHeight()))
                                 .addHeader("udid", UuidHelper.getUuid(MerchantApplication.getInstance()))

@@ -2,8 +2,6 @@ package com.iqianggou.android.merchantapp.model.pojo;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
  * Created by ubuntu on 16-9-18.
  */
