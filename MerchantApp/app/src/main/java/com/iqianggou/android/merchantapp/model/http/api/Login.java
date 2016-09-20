@@ -1,12 +1,11 @@
-package com.iqianggou.android.merchantapp.http.api;
+package com.iqianggou.android.merchantapp.model.http.api;
 
 import com.iqianggou.android.merchantapp.model.pojo.User;
-import com.iqianggou.android.merchantapp.model.pojo.Response;
+import com.iqianggou.android.merchantapp.model.pojo.Reply;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -15,6 +14,6 @@ import rx.Observable;
 public interface Login {
     @FormUrlEncoded
     @POST("brandadmin/login")
-    Observable<Response<User>> doLogin(@Field("account") String account, @Field("password") String password);
+    Observable<Reply<User>> doLogin(@Field("account") String account, @Field("password") String password);
 
 }

@@ -1,13 +1,10 @@
-package com.iqianggou.android.merchantapp.http.retrofit;
+package com.iqianggou.android.merchantapp.model.http.retrofit;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.iqianggou.android.merchantapp.MerchantApplication;
-import com.iqianggou.android.merchantapp.http.APIBase;
-import com.iqianggou.android.merchantapp.http.api.Login;
-import com.iqianggou.android.merchantapp.local.PreferenceClient;
-import com.iqianggou.android.merchantapp.model.pojo.User;
+import com.iqianggou.android.merchantapp.model.http.APIBase;
+import com.iqianggou.android.merchantapp.model.local.PreferenceClient;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
 import com.iqianggou.android.merchantapp.utils.UuidHelper;
 
@@ -20,9 +17,6 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2016/9/17.
@@ -30,38 +24,14 @@ import rx.schedulers.Schedulers;
 public class RetrofitClient {
 
     private static RetrofitClient INSTANCE;
-    private Retrofit mRetrofit;
+    private static Retrofit mRetrofit;
 
-    public static RetrofitClient getInstance(){
+    synchronized public static Retrofit getClient(){
         if (INSTANCE == null){
             INSTANCE = new RetrofitClient();
         }
 
-        return INSTANCE;
-    }
-
-    public void doLogin(String account, String password){
-        Login login = mRetrofit.create(Login.class);
-        login.doLogin(account, password)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<com.iqianggou.android.merchantapp.model.pojo.Response<User>>() {
-                    @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.e("doLogin", "error");
-                    }
-
-                    @Override
-                    public void onNext(com.iqianggou.android.merchantapp.model.pojo.Response<User> user) {
-                        Log.d("doLogin", user.toString());
-                    }
-                });
-
+        return mRetrofit;
     }
 
     private RetrofitClient(){

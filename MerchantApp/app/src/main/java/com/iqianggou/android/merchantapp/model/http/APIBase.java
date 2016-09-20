@@ -1,4 +1,4 @@
-package com.iqianggou.android.merchantapp.http;
+package com.iqianggou.android.merchantapp.model.http;
 
 /**
  * Created by Administrator on 2016/9/17.

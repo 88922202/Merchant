@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 /**
  * Created by ubuntu on 16-9-18.
  */
-public class Response<T> {
+public class Reply<T> {
 
     @SerializedName("status")
     private Status mStatus;
@@ -31,7 +31,7 @@ public class Response<T> {
 
     @Override
     public String toString() {
-        return "Response{" +
+        return "Reply{" +
                 "mStatus=" + mStatus +
                 ", mData=" + mData +
                 '}';

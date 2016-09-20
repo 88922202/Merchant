@@ -1,6 +1,6 @@
 package com.iqianggou.android.merchantapp;
 
-import com.iqianggou.android.merchantapp.http.retrofit.RetrofitClient;
+import com.iqianggou.android.merchantapp.model.http.retrofit.RetrofitClient;
 
 import org.junit.Test;
 

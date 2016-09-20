@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by ubuntu on 16-9-18.
  */
-public class ListResponse<T> {
+public class ListReply<T> {
 
     @SerializedName("status")
     private Status mStatus;
@@ -33,7 +33,7 @@ public class ListResponse<T> {
 
     @Override
     public String toString() {
-        return "ListResponse{" +
+        return "ListReply{" +
                 "mStatus=" + mStatus +
                 ", mDatas=" + mDatas +
                 '}';

@@ -1,6 +1,5 @@
-package com.iqianggou.android.merchantapp.local;
+package com.iqianggou.android.merchantapp.model.local;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
