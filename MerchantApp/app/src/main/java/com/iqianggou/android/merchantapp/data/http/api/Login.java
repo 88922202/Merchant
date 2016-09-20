@@ -1,7 +1,7 @@
-package com.iqianggou.android.merchantapp.model.http.api;
+package com.iqianggou.android.merchantapp.data.http.api;
 
-import com.iqianggou.android.merchantapp.model.pojo.User;
-import com.iqianggou.android.merchantapp.model.pojo.Reply;
+import com.iqianggou.android.merchantapp.data.model.User;
+import com.iqianggou.android.merchantapp.data.model.Reply;
 
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;

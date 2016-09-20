@@ -1,8 +1,8 @@
-package com.iqianggou.android.merchantapp.model.http.retrofit;
+package com.iqianggou.android.merchantapp.data.http.retrofit;
 
 import android.util.Log;
 
-import com.iqianggou.android.merchantapp.model.local.PreferenceClient;
+import com.iqianggou.android.merchantapp.data.local.PreferenceClient;
 
 import java.io.IOException;
 import java.util.HashSet;

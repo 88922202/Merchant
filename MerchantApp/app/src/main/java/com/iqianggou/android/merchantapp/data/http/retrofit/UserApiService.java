@@ -1,11 +1,11 @@
-package com.iqianggou.android.merchantapp.model.http.retrofit;
+package com.iqianggou.android.merchantapp.data.http.retrofit;
 
-import com.iqianggou.android.merchantapp.model.http.IHttpCallback;
-import com.iqianggou.android.merchantapp.model.http.ILoadingDialog;
-import com.iqianggou.android.merchantapp.model.http.IUserApiService;
-import com.iqianggou.android.merchantapp.model.http.api.Login;
-import com.iqianggou.android.merchantapp.model.pojo.Reply;
-import com.iqianggou.android.merchantapp.model.pojo.User;
+import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
+import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.http.IUserApiService;
+import com.iqianggou.android.merchantapp.data.http.api.Login;
+import com.iqianggou.android.merchantapp.data.model.Reply;
+import com.iqianggou.android.merchantapp.data.model.User;
 
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;

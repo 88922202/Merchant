@@ -1,4 +1,4 @@
-package com.iqianggou.android.merchantapp.model.pojo;
+package com.iqianggou.android.merchantapp.data.model;
 
 import com.google.gson.annotations.SerializedName;
 

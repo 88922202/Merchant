@@ -1,7 +1,7 @@
-package com.iqianggou.android.merchantapp.model.http;
+package com.iqianggou.android.merchantapp.data.http;
 
-import com.iqianggou.android.merchantapp.model.pojo.Reply;
-import com.iqianggou.android.merchantapp.model.pojo.User;
+import com.iqianggou.android.merchantapp.data.model.Reply;
+import com.iqianggou.android.merchantapp.data.model.User;
 
 /**
  * Created by ubuntu on 16-9-18.

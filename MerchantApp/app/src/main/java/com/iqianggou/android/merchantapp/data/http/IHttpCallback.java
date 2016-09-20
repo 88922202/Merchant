@@ -1,4 +1,4 @@
-package com.iqianggou.android.merchantapp.model.http;
+package com.iqianggou.android.merchantapp.data.http;
 
 /**
  * Created by ubuntu on 16-9-18.

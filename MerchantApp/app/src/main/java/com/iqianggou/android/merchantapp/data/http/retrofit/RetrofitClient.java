@@ -1,10 +1,10 @@
-package com.iqianggou.android.merchantapp.model.http.retrofit;
+package com.iqianggou.android.merchantapp.data.http.retrofit;
 
 import android.content.Context;
 
 import com.iqianggou.android.merchantapp.MerchantApplication;
-import com.iqianggou.android.merchantapp.model.http.APIBase;
-import com.iqianggou.android.merchantapp.model.local.PreferenceClient;
+import com.iqianggou.android.merchantapp.data.http.APIBase;
+import com.iqianggou.android.merchantapp.data.local.PreferenceClient;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
 import com.iqianggou.android.merchantapp.utils.UuidHelper;
 

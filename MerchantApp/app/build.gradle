@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.bugtags.library.plugin'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     useLibrary 'org.apache.http.legacy'
@@ -26,6 +27,15 @@ android {
     }
 }
 
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//    dependencies {
+//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+//    }
+//}
+
 //Bugtags 插件配置
 bugtags {
     //自动上传符号表功能配置，如果需要根据 build varint 配置，请参考插件详细使用说明
@@ -38,17 +48,24 @@ bugtags {
 }
 
 dependencies {
+
+    final RETROFIT_VERSION = '2.1.0'
+    final DAGGER2_VERSION = '2.0'
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     testCompile "org.robolectric:robolectric:3.1.1"
     compile 'com.android.support:appcompat-v7:24.2.0'
 
     compile 'com.bugtags.library:bugtags-lib:latest.integration'
-    compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    compile "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'io.reactivex:rxjava:1.1.6'
+    compile "com.google.dagger:dagger:$DAGGER2_VERSION"
+    apt "com.google.dagger:dagger-compiler:$DAGGER2_VERSION"
+    androidTestApt "com.google.dagger:dagger-compiler:$DAGGER2_VERSION"
 
     compile 'com.loopj.android:android-async-http:1.4.7'
 

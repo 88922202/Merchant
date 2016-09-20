@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.Button;
 
 import com.iqianggou.android.merchantapp.R;
-import com.iqianggou.android.merchantapp.model.http.IHttpCallback;
-import com.iqianggou.android.merchantapp.model.http.IUserApiService;
-import com.iqianggou.android.merchantapp.model.http.retrofit.UserApiService;
-import com.iqianggou.android.merchantapp.model.pojo.Reply;
-import com.iqianggou.android.merchantapp.model.pojo.User;
+import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
+import com.iqianggou.android.merchantapp.data.http.IUserApiService;
+import com.iqianggou.android.merchantapp.data.http.retrofit.UserApiService;
+import com.iqianggou.android.merchantapp.data.model.Reply;
+import com.iqianggou.android.merchantapp.data.model.User;
 
 public class MainActivity extends BaseActivity {
 

@@ -8,7 +8,7 @@ import android.view.MotionEvent;
 
 import com.bugtags.library.Bugtags;
 import com.iqianggou.android.merchantapp.R;
-import com.iqianggou.android.merchantapp.model.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
 
 /**
  * Created by Administrator on 2016/9/17.

@@ -1,17 +1,17 @@
-package com.iqianggou.android.merchantapp.model.http.asynchttp;
+package com.iqianggou.android.merchantapp.data.http.asynchttp;
 
 import android.content.Context;
 
 import com.google.gson.reflect.TypeToken;
 import com.iqianggou.android.merchantapp.MerchantApplication;
-import com.iqianggou.android.merchantapp.model.http.APIBase;
-import com.iqianggou.android.merchantapp.model.http.ILoadingDialog;
-import com.iqianggou.android.merchantapp.model.http.IUserApiService;
-import com.iqianggou.android.merchantapp.model.http.IHttpCallback;
-import com.iqianggou.android.merchantapp.model.local.GsonClient;
-import com.iqianggou.android.merchantapp.model.local.PreferenceClient;
-import com.iqianggou.android.merchantapp.model.pojo.Reply;
-import com.iqianggou.android.merchantapp.model.pojo.User;
+import com.iqianggou.android.merchantapp.data.http.APIBase;
+import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.http.IUserApiService;
+import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
+import com.iqianggou.android.merchantapp.data.local.GsonClient;
+import com.iqianggou.android.merchantapp.data.local.PreferenceClient;
+import com.iqianggou.android.merchantapp.data.model.Reply;
+import com.iqianggou.android.merchantapp.data.model.User;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
 import com.iqianggou.android.merchantapp.utils.UuidHelper;
 import com.loopj.android.http.AsyncHttpClient;

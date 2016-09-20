@@ -1,10 +1,10 @@
-package com.iqianggou.android.merchantapp.model.http.retrofit;
+package com.iqianggou.android.merchantapp.data.http.retrofit;
 
-import com.iqianggou.android.merchantapp.model.http.ErrorCode;
-import com.iqianggou.android.merchantapp.model.http.IHttpCallback;
-import com.iqianggou.android.merchantapp.model.http.ILoadingDialog;
-import com.iqianggou.android.merchantapp.model.pojo.Reply;
-import com.iqianggou.android.merchantapp.model.pojo.Status;
+import com.iqianggou.android.merchantapp.data.http.ErrorCode;
+import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
+import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.model.Reply;
+import com.iqianggou.android.merchantapp.data.model.Status;
 import com.iqianggou.android.merchantapp.utils.LogUtils;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
 
