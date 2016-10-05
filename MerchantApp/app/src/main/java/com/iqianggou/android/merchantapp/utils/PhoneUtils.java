@@ -23,8 +23,7 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
-import com.iqianggou.android.merchantapp.MerchantApplication;
-import com.iqianggou.android.merchantapp.R;
+import com.iqianggou.android.merchantapp.MerApplication;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -377,7 +376,7 @@ public class PhoneUtils {
 
         int width = PreferenceUtils.getPrefInt(PRE_TAG_PHONE_WIDTH, 0);
         if (width == 0) {
-            WindowManager windowManager = (WindowManager) MerchantApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = (WindowManager) MerApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
             width = windowManager.getDefaultDisplay().getWidth();
             PreferenceUtils.setPrefInt(PRE_TAG_PHONE_WIDTH, width);
         }
@@ -394,7 +393,7 @@ public class PhoneUtils {
     public static int getPhoneHeight() {
         int height = PreferenceUtils.getPrefInt(PRE_TAG_PHONE_HEIGHT, 0);
         if (height == 0) {
-            WindowManager windowManager = (WindowManager) MerchantApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = (WindowManager) MerApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
             height = windowManager.getDefaultDisplay().getHeight();
             PreferenceUtils.setPrefInt(PRE_TAG_PHONE_HEIGHT, height);
         }
@@ -409,7 +408,7 @@ public class PhoneUtils {
      */
     public static double getDensity(){
         DisplayMetrics dm = new DisplayMetrics();
-        WindowManager windowManager = (WindowManager) MerchantApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager windowManager = (WindowManager) MerApplication.getInstance().getSystemService(Context.WINDOW_SERVICE);
         windowManager.getDefaultDisplay().getMetrics(dm);
 
         return dm.density;      // 屏幕密度（像素比例：0.75/1.0/1.5/2.0）
@@ -422,7 +421,7 @@ public class PhoneUtils {
      */
     public static boolean checkNetWork() {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) MerchantApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) MerApplication.getInstance().getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo wifiInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobileInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 

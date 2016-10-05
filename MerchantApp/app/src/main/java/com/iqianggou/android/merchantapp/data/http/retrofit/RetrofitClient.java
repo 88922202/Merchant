@@ -2,7 +2,7 @@ package com.iqianggou.android.merchantapp.data.http.retrofit;
 
 import android.content.Context;
 
-import com.iqianggou.android.merchantapp.MerchantApplication;
+import com.iqianggou.android.merchantapp.MerApplication;
 import com.iqianggou.android.merchantapp.data.http.APIBase;
 import com.iqianggou.android.merchantapp.data.local.PreferenceClient;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
@@ -21,21 +21,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Administrator on 2016/9/17.
  */
-public class RetrofitClient {
+class RetrofitClient {
 
-    private static RetrofitClient INSTANCE;
-    private static Retrofit mRetrofit;
+    private static Retrofit CLIENT = initRetrofitClient();
 
-    synchronized public static Retrofit getClient(){
-        if (INSTANCE == null){
-            INSTANCE = new RetrofitClient();
-        }
-
-        return mRetrofit;
+    static Retrofit getClient(){
+        return CLIENT;
     }
 
     private RetrofitClient(){
-        mRetrofit = new Retrofit.Builder()
+    }
+
+    private static Retrofit initRetrofitClient(){
+        return new Retrofit.Builder()
                 .baseUrl(APIBase.URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
@@ -43,21 +41,21 @@ public class RetrofitClient {
                 .build();
     }
 
-    private OkHttpClient genericClient(){
+    private static OkHttpClient genericClient(){
         return new OkHttpClient.Builder()
                 .addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request request = chain.request()
                                 .newBuilder()
-                                .addHeader("version", PhoneUtils.getVersionName(MerchantApplication.getInstance()))
+                                .addHeader("version", PhoneUtils.getVersionName(MerApplication.getInstance()))
                                 .addHeader("platform", "2")
                                 .addHeader("Accept", "application/json")
                                 .addHeader("Auth-Token", PreferenceClient.getToken())
                                 .addHeader("zoneid", PreferenceClient.getZoneId())
                                 .addHeader("width", String.valueOf(PhoneUtils.getPhoneWidth()))
                                 .addHeader("height", String.valueOf(PhoneUtils.getPhoneHeight()))
-                                .addHeader("udid", UuidHelper.getUuid(MerchantApplication.getInstance()))
+                                .addHeader("udid", UuidHelper.getUuid(MerApplication.getInstance()))
                                 .addHeader("User-Agent", getUserAgent())
                                 .build();
                         return chain.proceed(request);
@@ -68,8 +66,8 @@ public class RetrofitClient {
                 .build();
     }
 
-    private String getUserAgent(){
-        Context context = MerchantApplication.getInstance();
+    private static String getUserAgent(){
+        Context context = MerApplication.getInstance();
         String version = PhoneUtils.getVersionName(context);
         String osVersion = PhoneUtils.getOSVersion(context);
         String deviceModel = PhoneUtils.getDeviceModel();

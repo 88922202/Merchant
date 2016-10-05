@@ -1,25 +1,30 @@
-package com.iqianggou.android.merchantapp.data.http.retrofit;
+package com.iqianggou.android.merchantapp.data.http.asynchttp;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.JsonSyntaxException;
 import com.iqianggou.android.merchantapp.data.http.ErrorCode;
 import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
 import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.local.json.GsonClient;
+import com.iqianggou.android.merchantapp.data.local.json.JsonClient;
 import com.iqianggou.android.merchantapp.data.model.Reply;
 import com.iqianggou.android.merchantapp.data.model.Status;
 import com.iqianggou.android.merchantapp.utils.LogUtils;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import retrofit2.adapter.rxjava.HttpException;
-import rx.Subscriber;
+import org.apache.http.Header;
 
 /**
- * Created by ubuntu on 16-9-19.
+ * Created by Administrator on 2016/10/5.
  */
-public class SubscriberCallback<T, D extends Reply<T>> extends Subscriber<D> {
+
+public class JsonResponseHandler<T> extends AsyncHttpResponseHandler {
 
     private IHttpCallback<T> mHttpCallback;
     private ILoadingDialog mLoadingDialog;
 
-    public SubscriberCallback(IHttpCallback<T> httpCallback, ILoadingDialog loadingDialog) {
+    public JsonResponseHandler(IHttpCallback<T> httpCallback, ILoadingDialog loadingDialog){
         mHttpCallback = httpCallback;
         mLoadingDialog = loadingDialog;
     }
@@ -30,9 +35,6 @@ public class SubscriberCallback<T, D extends Reply<T>> extends Subscriber<D> {
 
         if (!PhoneUtils.checkNetWork()){
             LogUtils.d("no network");
-            if (!isUnsubscribed()){
-                unsubscribe();
-            }
             if (mHttpCallback != null){
                 mHttpCallback.onFailure(ErrorCode.NO_NETWORK, "没有网络连接");
             }
@@ -45,52 +47,44 @@ public class SubscriberCallback<T, D extends Reply<T>> extends Subscriber<D> {
     }
 
     @Override
-    public void onCompleted() {
-        LogUtils.d("http request completed");
-        if (mLoadingDialog != null) {
-            mLoadingDialog.cancelLoadingDialog();
-        }
-    }
-
-    @Override
-    public void onError(Throwable e) {
-        if (e instanceof HttpException){
-            int code = ((HttpException) e).code();
-            processError(code);
-            LogUtils.e("error code = " + code + "," + e.getMessage());
-        }else {
-            LogUtils.e(e.getMessage());
-        }
-    }
-
-    @Override
-    public void onNext(D d) {
+    public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
         if (mHttpCallback == null) {
             return;
         }
 
-        Status status = d.getStatus();
+        String data = new String(responseBody);
+        Reply<T> reply;
+        try {
+            reply = JsonClient.getClient().jsonToBean(data, new TypeToken<Reply<T>>() {
+            }.getType());
+        }catch (JsonSyntaxException e){
+            LogUtils.e("Json parse error.");
+            mHttpCallback.onFailure(ErrorCode.APP_JSON_PARSE_ERROR, "Json parse error.");
+            return;
+        }
+
+        Status status = reply.getStatus();
         if (status == null){
             mHttpCallback.onFailure(ErrorCode.CODE_RESULT_EMPTY, "server status is empty");
         }else if (status.getCode() == ErrorCode.CODE_RESULT_EMPTY){
             mHttpCallback.onFailure(ErrorCode.CODE_RESULT_EMPTY, "server status is empty");
         }else if (status.getCode() >= ErrorCode.CODE_SUCCESS && status.getCode() <= ErrorCode.CODE_SUCCESS_LARGEST){
-            mHttpCallback.onSuccess(d.getData());
+            mHttpCallback.onSuccess(reply.getData());
         }
     }
 
-    private void processError(int errorCode){
-        if (mHttpCallback == null) {
-            return;
-        }
-        switch (errorCode){
-            case 401:
-                mHttpCallback.onFailure(401, "information");
-                break;
-            case 408:
-                break;
-            default:
-                break;
+    @Override
+    public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+    }
+
+    @Override
+    public void onFinish(){
+        super.onFinish();
+
+        LogUtils.d("http request completed");
+        if (mLoadingDialog != null) {
+            mLoadingDialog.cancelLoadingDialog();
         }
     }
 }

@@ -13,6 +13,6 @@ public class LoginTest {
 
     @Test
     public void doLogin() throws Exception {
-        RetrofitClient.getInstance().doLogin("zgzd", "123456");
+        //RetrofitClient.getInstance().doLogin("zgzd", "123456");
     }
 }

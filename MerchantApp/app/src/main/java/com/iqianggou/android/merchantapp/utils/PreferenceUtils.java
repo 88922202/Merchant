@@ -8,7 +8,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 
-import com.iqianggou.android.merchantapp.MerchantApplication;
+import com.iqianggou.android.merchantapp.MerApplication;
 
 @SuppressWarnings("unused")
 public class PreferenceUtils {
@@ -114,6 +114,6 @@ public class PreferenceUtils {
 
 
     private static SharedPreferences getPreference() {
-        return PreferenceManager.getDefaultSharedPreferences(MerchantApplication.getInstance().getApplicationContext());
+        return PreferenceManager.getDefaultSharedPreferences(MerApplication.getInstance().getApplicationContext());
     }
 }

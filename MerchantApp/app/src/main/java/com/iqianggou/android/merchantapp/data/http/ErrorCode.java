@@ -17,8 +17,13 @@ public class ErrorCode {
 
     public static final int AUTHORIZATION_ERROR = 4;
 
+    //客户端自定义错误
+    public static final int APP_JSON_PARSE_ERROR = 100;
+
+    //http 标准错误码
     public static final int TIMEOUT = 408;
 
+    //服务端自定义
     public static final int CODE_SUCCESS = 10000;
 
     public static final int CODE_RESULT_EMPTY = 10001;

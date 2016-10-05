@@ -2,97 +2,49 @@ package com.iqianggou.android.merchantapp.data.http.asynchttp;
 
 import android.content.Context;
 
-import com.google.gson.reflect.TypeToken;
-import com.iqianggou.android.merchantapp.MerchantApplication;
-import com.iqianggou.android.merchantapp.data.http.APIBase;
-import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
-import com.iqianggou.android.merchantapp.data.http.IUserApiService;
-import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
-import com.iqianggou.android.merchantapp.data.local.GsonClient;
+import com.iqianggou.android.merchantapp.MerApplication;
 import com.iqianggou.android.merchantapp.data.local.PreferenceClient;
-import com.iqianggou.android.merchantapp.data.model.Reply;
-import com.iqianggou.android.merchantapp.data.model.User;
 import com.iqianggou.android.merchantapp.utils.PhoneUtils;
 import com.iqianggou.android.merchantapp.utils.UuidHelper;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.PersistentCookieStore;
-import com.loopj.android.http.RequestParams;
-
-import org.apache.http.Header;
 
 /**
  * Created by ubuntu on 16-9-18.
  */
-public class AsyncClient implements IUserApiService {
+class AsyncClient {
 
-    private static AsyncClient INSTANCE;
+    private static AsyncHttpClient CLIENT = initAsyncHttpClient();
 
-    private AsyncHttpClient mHttpClient;
-
-    synchronized public static AsyncClient getInstance(){
-        if (INSTANCE == null){
-            INSTANCE = new AsyncClient();
-        }
-
-        return INSTANCE;
-    }
-
-    @Override
-    public void doLogin(String username, String password, final IHttpCallback<Reply<User>> callBack, final ILoadingDialog dialog){
-        RequestParams params = new RequestParams();
-        params.put("account", username);
-        params.put("password", password);
-
-        mHttpClient.post(APIBase.URL + "brandadmin/login", params, new AsyncHttpResponseHandler() {
-
-            @Override
-            public void onStart(){
-                dialog.showLoadingDialog();
-            }
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                String data = new String(responseBody);
-                Reply<User> reply = GsonClient.getGson().fromJson(data, new TypeToken<Reply<User>>() {
-                }.getType());
-
-                callBack.onSuccess(reply);
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                callBack.onFailure(statusCode, error.getMessage());
-            }
-
-            @Override
-            public void onFinish(){
-                dialog.cancelLoadingDialog();
-            }
-
-        });
-
+    static AsyncHttpClient getClient(){
+        return CLIENT;
     }
 
     private AsyncClient(){
-        mHttpClient = new AsyncHttpClient();
-        mHttpClient.addHeader("version", PhoneUtils.getVersionName(MerchantApplication.getInstance()));
-        mHttpClient.addHeader("platform", "2");
-        mHttpClient.addHeader("Accept", "application/json");
-        mHttpClient.addHeader("Auth-Token", PreferenceClient.getToken());
-        mHttpClient.addHeader("zoneid", PreferenceClient.getZoneId());
-        mHttpClient.addHeader("width", String.valueOf(PhoneUtils.getPhoneWidth()));
-        mHttpClient.addHeader("height", String.valueOf(PhoneUtils.getPhoneHeight()));
-        mHttpClient.addHeader("udid", UuidHelper.getUuid(MerchantApplication.getInstance()));
 
-        mHttpClient.setUserAgent(getUserAgent());
-
-        PersistentCookieStore cookieStore = new PersistentCookieStore(MerchantApplication.getInstance());
-        mHttpClient.setCookieStore(cookieStore);
     }
 
-    private String getUserAgent(){
-        Context context = MerchantApplication.getInstance();
+    private static AsyncHttpClient initAsyncHttpClient(){
+        CLIENT = new AsyncHttpClient();
+        CLIENT.addHeader("version", PhoneUtils.getVersionName(MerApplication.getInstance()));
+        CLIENT.addHeader("platform", "2");
+        CLIENT.addHeader("Accept", "application/json");
+        CLIENT.addHeader("Auth-Token", PreferenceClient.getToken());
+        CLIENT.addHeader("zoneid", PreferenceClient.getZoneId());
+        CLIENT.addHeader("width", String.valueOf(PhoneUtils.getPhoneWidth()));
+        CLIENT.addHeader("height", String.valueOf(PhoneUtils.getPhoneHeight()));
+        CLIENT.addHeader("udid", UuidHelper.getUuid(MerApplication.getInstance()));
+
+        CLIENT.setUserAgent(getUserAgent());
+
+        PersistentCookieStore cookieStore = new PersistentCookieStore(MerApplication.getInstance());
+        CLIENT.setCookieStore(cookieStore);
+
+        return CLIENT;
+    }
+
+    private static String getUserAgent(){
+        Context context = MerApplication.getInstance();
         String version = PhoneUtils.getVersionName(context);
         String osVersion = PhoneUtils.getOSVersion(context);
         String deviceModel = PhoneUtils.getDeviceModel();

@@ -1,8 +1,7 @@
 package com.iqianggou.android.merchantapp.data.http.retrofit;
 
-import android.util.Log;
-
 import com.iqianggou.android.merchantapp.data.local.PreferenceClient;
+import com.iqianggou.android.merchantapp.utils.LogUtils;
 
 import java.io.IOException;
 import java.util.HashSet;
@@ -14,6 +13,9 @@ import okhttp3.Response;
  * Created by Administrator on 2016/9/17.
  */
 public class ReceivedCookiesInterceptor implements Interceptor {
+
+    private static final String TAG = ReceivedCookiesInterceptor.class.getName();
+
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response originalResponse = chain.proceed(chain.request());
@@ -23,7 +25,7 @@ public class ReceivedCookiesInterceptor implements Interceptor {
 
             for (String header : originalResponse.headers("Set-Cookie")) {
                 cookies.add(header);
-                Log.d("OkHttp", "received header" + header);
+                LogUtils.d("received header." + header);
             }
 
             PreferenceClient.setCookies(cookies);

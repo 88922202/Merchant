@@ -3,7 +3,7 @@ package com.iqianggou.android.merchantapp.data.local;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
-import com.iqianggou.android.merchantapp.MerchantApplication;
+import com.iqianggou.android.merchantapp.MerApplication;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -44,6 +44,6 @@ public class PreferenceClient {
     }
 
     private static SharedPreferences getPreferences(){
-        return PreferenceManager.getDefaultSharedPreferences(MerchantApplication.getInstance());
+        return PreferenceManager.getDefaultSharedPreferences(MerApplication.getInstance());
     }
 }

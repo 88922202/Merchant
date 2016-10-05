@@ -15,35 +15,35 @@ public class LogUtils {
     public static void v(String msg){
         if (isDebug){
             StackTraceElement stack = Thread.currentThread().getStackTrace()[3];
-            Log.v(TAG, getExtraInfo(stack) + msg);
+            Log.v(TAG, msg + getExtraInfo(stack));
         }
     }
 
     public static void d(String msg){
         if (isDebug){
             StackTraceElement stack = Thread.currentThread().getStackTrace()[3];
-            Log.d(TAG, getExtraInfo(stack) + msg);
+            Log.d(TAG, msg + getExtraInfo(stack));
         }
     }
 
     public static void i(String msg){
         if (isDebug){
             StackTraceElement stack = Thread.currentThread().getStackTrace()[3];
-            Log.i(TAG, getExtraInfo(stack) + msg);
+            Log.i(TAG, msg + getExtraInfo(stack));
         }
     }
 
     public static void w(String msg){
         if (isDebug){
             StackTraceElement stack = Thread.currentThread().getStackTrace()[3];
-            Log.w(TAG, getExtraInfo(stack) + msg);
+            Log.w(TAG, msg + getExtraInfo(stack));
         }
     }
 
     public static void e(String msg){
         if (isDebug){
             StackTraceElement stack = Thread.currentThread().getStackTrace()[3];
-            Log.e(TAG, getExtraInfo(stack) + msg);
+            Log.e(TAG, msg + getExtraInfo(stack));
         }
     }
 
@@ -82,9 +82,11 @@ public class LogUtils {
         StringBuilder extraInfo = new StringBuilder();
         String className = stack.getClassName();
         String methodName = stack.getMethodName();
+        int line = stack.getLineNumber();
         extraInfo.append("[");
-        extraInfo.append("class=" + className).append(SEPARATOR);
-        extraInfo.append("method=" + methodName).append(SEPARATOR);
+        extraInfo.append("class = " + className).append(SEPARATOR);
+        extraInfo.append("method = " + methodName).append(SEPARATOR);
+        extraInfo.append("line = " + line);
         extraInfo.append("]");
 
         return extraInfo.toString();
