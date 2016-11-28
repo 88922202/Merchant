@@ -1,8 +1,5 @@
 package com.iqianggou.android.merchantapp.ui.presenter;
 
-import android.widget.Toast;
-
-import com.iqianggou.android.merchantapp.MerApplication;
 import com.iqianggou.android.merchantapp.data.UserManager;
 import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
 import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
@@ -10,12 +7,13 @@ import com.iqianggou.android.merchantapp.data.http.IUserApiService;
 import com.iqianggou.android.merchantapp.data.http.retrofit.UserApiService;
 import com.iqianggou.android.merchantapp.data.model.User;
 import com.iqianggou.android.merchantapp.utils.LogUtils;
+import com.iqianggou.android.merchantapp.utils.ToastUtil;
 
 /**
  * Created by Administrator on 2016/10/5.
  */
 
-public class LoginPresenter implements ILoginPresenter {
+public class LoginPresenter {
 
     private ILoginView mLoginView;
     private ILoadingDialog mLoadingDialog;
@@ -37,7 +35,7 @@ public class LoginPresenter implements ILoginPresenter {
 
             @Override
             public void onFailure(int errorCode, String message) {
-                Toast.makeText(MerApplication.getInstance(), message, Toast.LENGTH_SHORT).show();
+                ToastUtil.showShortText(message);
             }
         }, mLoadingDialog);
     }

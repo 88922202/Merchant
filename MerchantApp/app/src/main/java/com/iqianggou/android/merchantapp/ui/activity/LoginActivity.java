@@ -9,16 +9,16 @@ import android.widget.Toast;
 
 import com.iqianggou.android.merchantapp.MerApplication;
 import com.iqianggou.android.merchantapp.R;
-import com.iqianggou.android.merchantapp.ui.presenter.ILoginPresenter;
 import com.iqianggou.android.merchantapp.ui.presenter.ILoginView;
 import com.iqianggou.android.merchantapp.ui.presenter.LoginPresenter;
+import com.iqianggou.android.merchantapp.utils.ToastUtil;
 
 public class LoginActivity extends BaseActivity implements ILoginView{
 
     private Button mLogin;
     private EditText mUsername;
     private EditText mPassword;
-    private ILoginPresenter mLoginPresenter;
+    private LoginPresenter mLoginPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +43,11 @@ public class LoginActivity extends BaseActivity implements ILoginView{
                 String username = mUsername.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
                 if (TextUtils.isEmpty(username)){
-                    Toast.makeText(MerApplication.getInstance(), "请输入用户名", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showShortText("请输入用户名");
                     return;
                 }
                 if (TextUtils.isEmpty(password)){
-                    Toast.makeText(MerApplication.getInstance(), "请输入密码", Toast.LENGTH_SHORT).show();
+                    ToastUtil.showShortText("请输入密码");
                     return;
                 }
 

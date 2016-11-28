@@ -15,13 +15,13 @@ import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
  */
 public class BaseActivity extends AppCompatActivity implements ILoadingDialog{
 
-    private Dialog loadingDialog;
+    protected Dialog mLoadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        loadingDialog = createLoadingDialog();
+        mLoadingDialog = createLoadingDialog();
     }
 
     @Override
@@ -47,12 +47,12 @@ public class BaseActivity extends AppCompatActivity implements ILoadingDialog{
 
     @Override
     public void showLoadingDialog() {
-        loadingDialog.show();
+        mLoadingDialog.show();
     }
 
     @Override
     public void cancelLoadingDialog() {
-        loadingDialog.cancel();
+        mLoadingDialog.cancel();
     }
 
     private Dialog createLoadingDialog(){
