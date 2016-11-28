@@ -55,7 +55,7 @@ public class JsonResponseHandler<T> extends AsyncHttpResponseHandler {
         String data = new String(responseBody);
         Reply<T> reply;
         try {
-            reply = JsonClient.getClient().jsonToBean(data, new TypeToken<Reply<T>>() {
+            reply = JsonClient.jsonToBean(data, new TypeToken<Reply<T>>() {
             }.getType());
         }catch (JsonSyntaxException e){
             LogUtils.e("Json parse error.");

@@ -2,6 +2,7 @@ package com.iqianggou.android.merchantapp.data.http.retrofit;
 
 import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
 import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.http.IUserApiService;
 import com.iqianggou.android.merchantapp.data.http.api.Login;
 import com.iqianggou.android.merchantapp.data.http.api.GetMerchants;
 import com.iqianggou.android.merchantapp.data.http.api.Register;
@@ -16,7 +17,7 @@ import rx.schedulers.Schedulers;
 /**
  * Created by ubuntu on 16-9-20.
  */
-public class UserApiService implements com.iqianggou.android.merchantapp.data.http.IUserApiService {
+public class UserApiService implements IUserApiService {
 
     @Override
     public void doLogin(String username, String password, IHttpCallback<User> httpCallback, ILoadingDialog dialog) {
