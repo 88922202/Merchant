@@ -1,5 +1,6 @@
 package com.iqianggou.android.merchantapp.ui.presenter;
 
+import com.iqianggou.android.merchantapp.MerApplication;
 import com.iqianggou.android.merchantapp.data.UserManager;
 import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
 import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
@@ -9,20 +10,23 @@ import com.iqianggou.android.merchantapp.data.model.User;
 import com.iqianggou.android.merchantapp.utils.LogUtils;
 import com.iqianggou.android.merchantapp.utils.ToastUtil;
 
+import javax.inject.Inject;
+
 /**
  * Created by Administrator on 2016/10/5.
  */
 
 public class LoginPresenter {
 
+    @Inject IUserApiService mUserApiService;
+
     private ILoginView mLoginView;
     private ILoadingDialog mLoadingDialog;
-    private IUserApiService mUserApiService;
 
     public LoginPresenter(ILoginView loginView, ILoadingDialog loadingDialog){
         mLoginView = loginView;
         mLoadingDialog = loadingDialog;
-        mUserApiService = new UserApiService();
+        mUserApiService = MerApplication.getInstance().getUserApiService();
     }
 
     public void doLogin(String username, String password){

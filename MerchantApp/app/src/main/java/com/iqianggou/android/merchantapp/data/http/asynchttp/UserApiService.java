@@ -3,6 +3,7 @@ package com.iqianggou.android.merchantapp.data.http.asynchttp;
 import com.iqianggou.android.merchantapp.data.http.APIBase;
 import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
 import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
+import com.iqianggou.android.merchantapp.data.http.IUserApiService;
 import com.iqianggou.android.merchantapp.data.model.Merchant;
 import com.iqianggou.android.merchantapp.data.model.User;
 import com.loopj.android.http.RequestParams;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by Administrator on 2016/10/5.
  */
 
-public class UserApiService implements com.iqianggou.android.merchantapp.data.http.IUserApiService {
+public class UserApiService implements IUserApiService {
 
     @Override
     public void doLogin(String username, String password, final IHttpCallback<User> callBack, final ILoadingDialog dialog){
