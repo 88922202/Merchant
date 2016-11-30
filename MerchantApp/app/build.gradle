@@ -34,14 +34,14 @@ android {
 
 
 
-//buildscript {
-//    repositories {
-//        jcenter()
-//    }
-//    dependencies {
-//        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
-//    }
-//}
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+    }
+}
 
 //Bugtags 插件配置
 bugtags {
@@ -74,6 +74,7 @@ dependencies {
     compile "com.google.dagger:dagger:$DAGGER2_VERSION"
     apt "com.google.dagger:dagger-compiler:$DAGGER2_VERSION"
     androidTestApt "com.google.dagger:dagger-compiler:$DAGGER2_VERSION"
+    provided 'org.glassfish:javax.annotation:10.0-b28'
 
     compile 'com.loopj.android:android-async-http:1.4.7'
 

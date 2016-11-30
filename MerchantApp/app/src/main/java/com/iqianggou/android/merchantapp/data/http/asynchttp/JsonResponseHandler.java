@@ -1,11 +1,10 @@
 package com.iqianggou.android.merchantapp.data.http.asynchttp;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.JsonSyntaxException;
+import com.google.gson.reflect.TypeToken;
 import com.iqianggou.android.merchantapp.data.http.ErrorCode;
 import com.iqianggou.android.merchantapp.data.http.IHttpCallback;
 import com.iqianggou.android.merchantapp.data.http.ILoadingDialog;
-import com.iqianggou.android.merchantapp.data.local.json.GsonClient;
 import com.iqianggou.android.merchantapp.data.local.json.JsonClient;
 import com.iqianggou.android.merchantapp.data.model.Reply;
 import com.iqianggou.android.merchantapp.data.model.Status;
@@ -53,6 +52,7 @@ public class JsonResponseHandler<T> extends AsyncHttpResponseHandler {
         }
 
         String data = new String(responseBody);
+        LogUtils.d("response data:" + data);
         Reply<T> reply;
         try {
             reply = JsonClient.jsonToBean(data, new TypeToken<Reply<T>>() {

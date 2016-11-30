@@ -11,5 +11,5 @@ public class APIBase {
 
     private static final String DEV = "http://dev.iqianggou.lab:8181/api/";
 
-    public static final String URL = STAGING;
+    public static final String URL = ONLINE;
 }
